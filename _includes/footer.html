@@ -1,0 +1,64 @@
+<footer class="footer">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+  <!-- <a class="footer_item" href="/thanks">ack.</a>
+  <a class="footer_item" href="javascript::void(0)">resume</a> -->
+  <!-- <a class="footer_item" href="/feed.xml">rss</a> -->
+
+  <span class="footer_item">&copy; {{ site.time | date: "%Y" }}</span>
+  <small class="footer_copyright">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i>  with <i class="fa fa-heart" aria-hidden="false"></i>
+    by <strong>{{ site.author.name }}</strong>
+  </small>
+  <br>
+<a class="social mx-1" href="mailto:prasanth.bodepu@gmail.com" style="color: rgb(108, 117, 125);" onmouseover="this.style.color='#db4437'" onmouseout="this.style.color='#6c757d'">
+    <i class="fas fa-envelope fa-1x"></i>
+  </a>
+&nbsp;&nbsp;
+  <a class="social mx-1" href="https://www.github.com/0xPb1" style="color: rgb(108, 117, 125);" onmouseover="this.style.color='#333333'" onmouseout="this.style.color='#6c757d'">
+    <i class="fab fa-github fa-1x"></i>
+  </a>
+&nbsp;&nbsp;
+  <a class="social mx-1" href="https://www.instagram.com/_0xpb" style="color: rgb(108, 117, 125);" onmouseover="this.style.color='#405de6'" onmouseout="this.style.color='#6c757d'">
+    <i class="fab fa-instagram fa-1x"></i>
+  </a>
+  &nbsp;&nbsp;
+  <a class="social mx-1" href="https://www.linkedin.com/in/0xPb" style="color: #6c757d" onmouseover="this.style.color='#007bb5'" onmouseout="this.style.color='#6c757d'">
+    <i class="fab fa-linkedin-in fa-1x"></i>
+  </a>
+  &nbsp;&nbsp;  
+  <a class="social mx-1" href="https://www.twitter.com/_0xPb" style="color: #6c757d" onmouseover="this.style.color='#1da1f2'" onmouseout="this.style.color='#6c757d'">
+    <i class="fab fa-twitter fa-1x"></i>
+  </a>
+
+
+  </small>
+</footer>
+<script src="/assets/js/main.js" defer="defer"></script>
+{%- if site.google_analytics -%}
+  <!-- Google tag (gtag.js) -->
+  <script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "{{ site.google_analytics }}");
+  </script>
+{%- endif -%}
+{%- if page.url == '/archive/' -%}
+  <script src="/assets/js/search.min.js"></script>
+  <script>
+    var sjs = SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '/assets/search.json',
+    });
+  </script>
+{%- endif -%}
