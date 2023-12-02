@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2023-12-02T15:15:54+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Klise Theme</title><subtitle>He&apos;s writing in Bahasa about web technology and experience as a journal  for documentation things that he learned, meet him &lt;a href=&quot;https://github.com/piharpi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;@github&lt;/a&gt;.</subtitle><author><name>Prasanth Bodepu</name><email>your-email@email.com</email></author><entry><title type="html">klown-cfm 🎪</title><link href="http://localhost:4000/klown-cfm/" rel="alternate" type="text/html" title="klown-cfm 🎪" /><published>2023-10-30T05:57:49+07:00</published><updated>2023-10-30T05:57:49+07:00</updated><id>http://localhost:4000/klown-cfm</id><content type="html" xml:base="http://localhost:4000/klown-cfm/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>challenge URL: https://spooky.bugcrowd.zw.ink/klown.cfm
+</code></pre></div></div>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>In this CTF challenge, you were presented with a mysterious web page at the given URL. The initial page seemed to have an inaccessible submit button, but with a little investigation, you were able to uncover a secret password. By following a series of steps, you successfully bypassed the security mechanism and retrieved the <code class="language-plaintext highlighter-rouge">CODE</code>. Let’s walk through the solution:</p>
+
+<h2 id="solution">Solution:</h2>
+
+<ol>
+  <li><strong>Initial Exploration:</strong>
+    <ul>
+      <li>Upon visiting the URL <a href="https://spooky.bugcrowd.zw.ink/klown.cfm">https://spooky.bugcrowd.zw.ink/klown.cfm</a>, I encountered a peculiar webpage.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101223651.png" alt="#1" /></p>
+
+<ol>
+  <li><strong>Hidden Button Element:</strong>
+    <ul>
+      <li>I noticed a button element with the following attributes:</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input name="smile" type="submit" value="submit" disabled="true" style="color:#DF6322; font-weight:bold; cursor: not-allowed" title="Access Denied" id="smile"&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>The button was initially disabled and appeared inaccessible.</li>
+</ul>
+
+<ol>
+  <li><strong>Button Activation:</strong>
+    <ul>
+      <li>I realized that the button could be activated by removing the disabled=”true” attribute.</li>
+    </ul>
+  </li>
+  <li><strong>Form Submission:</strong>
+    <ul>
+      <li>After removing the disabled=”true” attribute, I submitted the form with the default input “Kreepy Klown denies you access!”.</li>
+    </ul>
+  </li>
+  <li><strong>Alert Popup:</strong>
+    <ul>
+      <li>My action triggered a pop-up message that revealed the password:
+  <code class="language-plaintext highlighter-rouge">Secret Password: KR33PIE-KL0WN</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101223939.png" alt="#2" /></p>
+
+<ol>
+  <li><strong>Input Password:</strong>
+    <ul>
+      <li>You then input the secret password, <code class="language-plaintext highlighter-rouge">KR33PIE-KL0WN</code>, into the appropriate field, following the instructions provided in the pop-up.</li>
+    </ul>
+
+    <p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Pasted%20image%2020231101224233.png" alt="#3" /></p>
+  </li>
+  <li><strong>Final Flag:</strong>
+    <ul>
+      <li>After submitting the password, you received the final response:</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101224121.png" alt="#4" /></p>]]></content><author><name>Prasanth Bodepu</name><email>your-email@email.com</email></author><category term="Bugcrowd" /><category term="CTF" /><category term="Bugcrowd" /><summary type="html"><![CDATA[challenge URL: https://spooky.bugcrowd.zw.ink/klown.cfm]]></summary></entry><entry><title type="html">Leek NFT challenge 0223</title><link href="http://localhost:4000/Leek-NFT-challenge-0223/" rel="alternate" type="text/html" title="Leek NFT challenge 0223" /><published>2023-03-10T09:45:47+07:00</published><updated>2023-03-10T09:45:47+07:00</updated><id>http://localhost:4000/Leek%20NFT%20challenge%200223</id><content type="html" xml:base="http://localhost:4000/Leek-NFT-challenge-0223/"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*v2mhOVlizpRg9V4e" alt="" /></p>
+
+<p><strong>Challenge Link:</strong> <a href="https://challenge-0223.intigriti.io/">https://challenge-0223.intigriti.io/</a></p>
+
+<p><strong>Challenge By:</strong> <a href="https://twitter.com/x64pr0fessor">https://twitter.com/x64pr0fessor</a></p>
+
+<p><strong>Goal:</strong> Now we understand that we need to find a method to display an alert box in order to confirm that this is indeed an instance of XSS.</p>
+
+<h1 id="reconnaissance">Reconnaissance</h1>
+
+<p>We were given an application that allows us to create “Leek NFT” by uploading your own picture as background. After uploading the image you have to submit. You’ll see a message “<strong><em>file uploaded successfully to 355fed1f-a3ed-44cd-b708–93e1c6f2559a”.</em></strong> _Where “355fed1f-a3ed-44cd-b708–93e1c6f2559a” is some kind of UUID or other identifier of session and uploaded file.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*Ui72KpnraowigP91" alt="" /></p>
+
+<p>Now click on save. You’ll be redirected to the main NFT page</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*K5NmIR5keQJcPrUa" alt="" /></p>
+
+<p>I don’t see any changes on the UI, which led me to access the page source to search for helpful information or JavaScript</p>
+
+<p>view-source:https://challenge-0223.intigriti.io/view?viewId=355fed1f-a3ed-44cd-b708-93e1c6f2559a</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*Ut030iWIvwXfQoKq" alt="" /></p>
+
+<p>Upon reviewing the JavaScript code, I have realized that the application verifies specific metadata of the uploaded image, such as “<code class="language-plaintext highlighter-rouge">UserComment</code>,” “<code class="language-plaintext highlighter-rouge">DateTimeOriginal</code>,” and “<code class="language-plaintext highlighter-rouge">OwnerName</code>.” This information is retrieved directly from the image’s Exif data.</p>
+
+<p>The retrieved information is added to the JSON string.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*F0r0DX7iI6ELoIew" alt="" /></p>
+
+<p>The application concatenates strings without performing any sanitization, providing attackers with a potential entry point to inject any form of data into the “<strong><code class="language-plaintext highlighter-rouge">_imjobj_</code></strong>” variable.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*KJUrlaJv4Y-T0k3n" alt="" /></p>
+
+<p>The <strong><code class="language-plaintext highlighter-rouge">_imgName_</code></strong> variable in the code cannot be modified because it is hardcoded, intentionally.</p>
+
+<p><strong>Exploitation:</strong></p>
+
+<p>With the help of the potential entry point in <strong>“<code class="language-plaintext highlighter-rouge">_imgobj</code>_”</strong> we could add another key named <strong>“<code class="language-plaintext highlighter-rouge">imgName</code>”</strong> at the end of the JSON String.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*r0FNPniX_fl7EnVv" alt="" /></p>
+
+<p>Consider the below case:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{  
+  "key1":"Naruto",  
+  "key1":"Gojo"  
+}
+</code></pre></div></div>
+<p>The final value of <strong><code class="language-plaintext highlighter-rouge">key1</code></strong> would be <strong><code class="language-plaintext highlighter-rouge">Gojo</code>.</strong> Because, as mentioned above <code class="language-plaintext highlighter-rouge">JSON.parse()</code> would always take the value of the last key for multiple keys with the same name.</p>
+
+<p>With the above information we could craft a payload in the <strong><code class="language-plaintext highlighter-rouge">imjobj</code></strong> JSON string</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{  
+  "imgName":"NFT.jpg",  
+  "imgColorType":"02/14/2023, 20:09:16",  
+  "imgComment":"0xPrashanth",  
+  "imgName":"&lt;img src=x onerror=alert(document.domain)&gt;"  
+}
+</code></pre></div></div>
+
+<p>In order to achieve the above format inject the payload in the <strong><code class="language-plaintext highlighter-rouge">imgComment</code></strong> field using <strong>exiftool</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exiftool -UserComment='pr0shx", "imgName": "&lt;img src=x onerror=alert(document.domain)&gt;' image.png
+</code></pre></div></div>
+
+<p>So, now upload the image.png to <a href="https://challenge-0223.intigriti.io/create"><em>https://challenge-0223.intigriti.io/create</em></a> and submit it. Click on save, you can see an <strong><em>alert</em></strong> box is popped in the challenge domain as shown below.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*zz0jlElkVgfUp_Nv" alt="" /></p>
+
+<p>This attack works because the application does not sanitize user input and assume hardcoded values are immutable. Creating <strong><code class="language-plaintext highlighter-rouge">imgobj</code></strong> should be done as an object in the first place instead of creating a JSON string and parsing it to a JavaScript object.</p>
+
+<blockquote>
+  <p>Prepared by Prashanth in collaboration with Pawel.</p>
+</blockquote>
+
+<p><strong>Connect with us at -</strong></p>
+
+<p>Twitter — <a href="https://twitter.com/_0xPb">Prashanth</a>, <a href="https://twitter.com/0xSovietBeast">Pawel</a></p>]]></content><author><name>Prasanth Bodepu</name><email>your-email@email.com</email></author><category term="blog" /><category term="json" /><category term="xss" /><category term="intigriti" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Can you spot the vulnerability? 16022023 Intigriti</title><link href="http://localhost:4000/Can-you-spot-the-vulnerability-16022023-Intigriti/" rel="alternate" type="text/html" title="Can you spot the vulnerability? 16022023 Intigriti" /><published>2023-03-09T01:00:00+07:00</published><updated>2023-03-09T01:00:00+07:00</updated><id>http://localhost:4000/Can-you-spot-the-vulnerability?-16022023-Intigriti</id><content type="html" xml:base="http://localhost:4000/Can-you-spot-the-vulnerability-16022023-Intigriti/"><![CDATA[<p>Given Code Snippet:</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*VEmGASE-5FAv3lFqcXDgXw.png" alt="" /></p>
+
+<h2 id="code-review">Code review:</h2>
+
+<h3 id="easy-evaljs">easy-eval.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (window.debug) {\
+    eval(window.debug.toString()); //using eval at DOM element with id "debug"\
+  //only a and area tag can be used in attack as they are capable of using href attribute. toString get only that attribute\
+}
+</code></pre></div></div>
+
+<h3 id="easy-xssjs">easy-xss.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const pos = document.URL.indexOf('name=') + 5; //user input\
+const name = document.URL.substring(pos, document.URL.length)// just paring GET parameteres\
+const container = document.getElementById('container');\
+container.innerHTML = decodeURI(name); // no proper sanitization
+</code></pre></div></div>
+
+<h3 id="indexhtml">index.html</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//can't use inline script tag because it has to be src "self"\
+&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'"&gt;\
+&lt;div id="container"&gt;&lt;/div&gt;\
+&lt;script src="easy-eval.js"&gt;&lt;/script&gt;\
+&lt;script src="easy-xss.js"&gt;&lt;/script&gt;
+</code></pre></div></div>
+
+<h3 id="the-vulnerability">The Vulnerability</h3>
+
+<p>User input is passed in <code class="language-plaintext highlighter-rouge">name</code> parameter straight to the <code class="language-plaintext highlighter-rouge">innerHTML</code> so it would be rendered by browser for example inserting <code class="language-plaintext highlighter-rouge">&lt;h1&gt;asdf&lt;/h1&gt;</code> makes <code class="language-plaintext highlighter-rouge">asdf</code> bold in browser, so HTML tag is parsed correctly.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*KliBbWbiWngU0-lB" alt="" /></p>
+
+<h3 id="exploitation">Exploitation</h3>
+
+<p>Here, The application’s CSP — Content Security Policy is not enough to stop executing arbitrary JavaScript code.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Q0hv430ejEtQxk0Ziidw7g.png" alt="" /></p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">iframe</code> with <code class="language-plaintext highlighter-rouge">srcdoc</code> attribute allows to fullfill <code class="language-plaintext highlighter-rouge">defaul-src: self</code> condition of CSP. This is because iframe with <code class="language-plaintext highlighter-rouge">srcdoc</code> is assumed <code class="language-plaintext highlighter-rouge">src= self</code>. This with addition to no proper sanitization allows to inject JavaScript code in the victim browser.</p>
+
+<h3 id="payload">Payload</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://127.0.0.1:8000/?name=&lt;iframe srcdoc="&lt;a id=debug href=pb:alert(document.domain)&gt;&lt;script src=easy-eval.js&gt;&lt;/script&gt;"&gt;
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">srcdoc</code> attribute inject a tag with <code class="language-plaintext highlighter-rouge">id=debug</code> which allows to pass if statement in <code class="language-plaintext highlighter-rouge">easy-eval.js</code> then href attribute is set to <code class="language-plaintext highlighter-rouge">pb:alert(document.domain)</code> the first part <code class="language-plaintext highlighter-rouge">pb</code> should be a non-existing protocol. Any protocol that contains <code class="language-plaintext highlighter-rouge">//</code> would not work because in javascript <code class="language-plaintext highlighter-rouge">//</code> is comment. So <code class="language-plaintext highlighter-rouge">http://</code> or <code class="language-plaintext highlighter-rouge">ftp://</code> would result in commenting the payload and never executing it properly.</p>
+
+<p>After that <code class="language-plaintext highlighter-rouge">easy-eval.js</code> is called again to re-initialize the script and execute code in it.</p>
+
+<p>XSS</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*NPkH16P9g6o7C7rvYpXpQQ.png" alt="" /></p>
+
+<p><a href="https://twitter.com/0xSovietBeast">Paweł Wąsik</a> and I worked together to understand and identify the JS code and the vulnerability respectively. This challenge seems to be quite interesting and we were able to gain new knowledge from it.</p>
+
+<p>Thanks <a href="https://twitter.com/h43z">Richard</a> for providing an excellent explanation that greatly contributed to our understanding of the subject.</p>
+
+<p>Refer to this thread to gain a better understanding of the issue.</p>
+
+<blockquote>
+  <p><a href="https://twitter.com/h43z/status/1626237041787940867?s=20">https://twitter.com/h43z/status/1626237041787940867?s=20</a></p>
+</blockquote>
+
+<p>Connect with us at -</p>
+
+<p>Twitter — <a href="https://twitter.com/_0xPb_">Prashanth</a>, <a href="https://twitter.com/0xSovietBeast">Pawel</a></p>]]></content><author><name>Prasanth Bodepu</name><email>your-email@email.com</email></author><category term="intigriti" /><category term="monthlychallenge" /><category term="xss" /><summary type="html"><![CDATA[Given Code Snippet:]]></summary></entry><entry><title type="html">Bugcrowd eLFI Challenge</title><link href="http://localhost:4000/Bugcrowd-eLFI-Challenge/" rel="alternate" type="text/html" title="Bugcrowd eLFI Challenge" /><published>2023-01-17T11:58:47+07:00</published><updated>2023-01-17T11:58:47+07:00</updated><id>http://localhost:4000/Bugcrowd-eLFI-Challenge</id><content type="html" xml:base="http://localhost:4000/Bugcrowd-eLFI-Challenge/"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*OhB8Zp9uhjXWWEaG" alt="image1" /></p>
+
+<p>The Bugcrowd has thrown down the gauntlet to all hackers out there.</p>
+
+<p><strong>HINT-1</strong>: “I am eLFI.”</p>
+
+<ul>
+  <li>First, I visited this link: <a href="https://bugcrowd-advent-challenge.herokuapp.com/login.php">Bugcrowd Advent Challenge</a>.</li>
+  <li>I attempted to log in with <code class="language-plaintext highlighter-rouge">user1</code> and <code class="language-plaintext highlighter-rouge">Randompassword123</code> as credentials, which resulted in an internal server error, as shown below:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*X7RI3Gd3nMVPhHGeERkWSQ.png" alt="image" /></p>
+
+<ul>
+  <li>I tinkered with the <code class="language-plaintext highlighter-rouge">login.php</code> page, but no luck.</li>
+  <li>I delved into the source code of <code class="language-plaintext highlighter-rouge">login.php</code> and found a few interesting lines that caught my attention, as highlighted below:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VaKBQncUk8AVSV2cPYDwRg.png" alt="image" /></p>
+
+<ul>
+  <li>I remembered the hint, and these lines of code seemed related.</li>
+  <li>This led me to discover a vulnerable endpoint: `/style.php?css_file=custom.css.</li>
+  <li>It appeared to filter out <code class="language-plaintext highlighter-rouge">/etc/passwd</code>, so I attempted URL and BASE64 encoding, but no luck.</li>
+  <li>After some more exploration, I noticed another file: `index.php.</li>
+  <li>When I tried to open it, it redirected me to <code class="language-plaintext highlighter-rouge">login.php. However, in the network tab, I saw </code>index.php` with a status code of 302.</li>
+  <li>I felt suspicious about <code class="language-plaintext highlighter-rouge">index.php</code> and decided to investigate further:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*auF6KSYzFoF5xnc5FoBJfw.png" alt="image" /></p>
+
+<ul>
+  <li>I used <code class="language-plaintext highlighter-rouge">php://filter/convert.base64-encode/resource=&lt;filename&gt;</code> to bypass restrictions and view the source code of `index.php.</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*G3THjATyx7BnY0cNODccTQ.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">index.php</code> revealed an encoded string, which I decoded using CyberChef:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*78aQVW839y5s6yl7OscdDA.png" alt="image" /></p>
+
+<ul>
+  <li>After decoding, I found another PHP file: <code class="language-plaintext highlighter-rouge">dashboard.php</code>. I replaced <code class="language-plaintext highlighter-rouge">index.php</code> with `dashboard.php:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*92uErSvzxkxdQzrBB1FaLA.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">dashboard.php</code> presented another encoded string, which I decoded again.</li>
+  <li>After decoding, I found yet another file: `sober.php.</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/format:webp/1*Vze78YM-FcbfaSUpNPWq-A.png" alt="image" /></p>
+
+<ul>
+  <li>I replaced <code class="language-plaintext highlighter-rouge">dashboard.php</code> with <code class="language-plaintext highlighter-rouge">sober.php</code> and discovered another encoded string in the comments, although smaller than the earlier ones:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FtxcGiChOcTDTofb1Dahhg.png" alt="image" /></p>
+
+<ul>
+  <li>After decoding, I obtained the following code: <strong>FLAG{d1g_d33p_and_find_7he_power_within}</strong>:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*kGtqNRgnZS1CgA-iFOp67g.png" alt="image" /></p>
+
+<p>I don’t know why, but I was drawn to this challenge and even took some time off work to solve it. Thanks to <a href="https://twitter.com/Bugcrowd">Bugcrowd</a> for the fun challenge!</p>
+
+<p>The challenge might seem simple after reading this walkthrough, but believe me, it took a lot of brainpower and time to execute.</p>
+
+<p>I’d like to extend my gratitude to my friend, Paweł Wąsik, for his constant support.</p>
+
+<p><strong>References:</strong></p>
+
+<ul>
+  <li><a href="https://infinitelogins.com/2020/04/25/lfi-php-wrappers-to-obtain-source-code/">Using PHP Wrappers within LFI to Obtain PHP Script Source Code</a></li>
+  <li><a href="https://infinitelogins.com/2020/04/25/lfi-php-wrappers-to-obtain-source-code/">You find a Local File Inclusion (LFI) running PHP, you’re able to leverage a PHP wrapper to convert the file to Base64…infinitelogins.com</a></li>
+</ul>
+
+<p><strong>Connect with me at:</strong> <a href="https://www.linkedin.com/in/prasanth-bodepu-%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%B6%E0%B0%BE%E0%B0%82%E0%B0%A4%E0%B1%8D-411ba31a3/">LinkedIn</a>, <a href="https://twitter.com/_0xPb">Twitter</a></p>]]></content><author><name>Prasanth Bodepu</name><email>your-email@email.com</email></author><category term="bugcrowd" /><category term="LFI" /><category term="php" /><summary type="html"><![CDATA[]]></summary></entry></feed>

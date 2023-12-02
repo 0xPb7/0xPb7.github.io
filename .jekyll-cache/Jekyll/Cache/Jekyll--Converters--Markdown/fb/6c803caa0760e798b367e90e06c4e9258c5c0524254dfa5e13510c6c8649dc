@@ -1,0 +1,72 @@
+I"p<p>Given Code Snippet:</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*VEmGASE-5FAv3lFqcXDgXw.png" alt="" /></p>
+
+<h2 id="code-review">Code review:</h2>
+
+<h3 id="easy-evaljs">easy-eval.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (window.debug) {\
+    eval(window.debug.toString()); //using eval at DOM element with id "debug"\
+  //only a and area tag can be used in attack as they are capable of using href attribute. toString get only that attribute\
+}
+</code></pre></div></div>
+
+<h3 id="easy-xssjs">easy-xss.js</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const pos = document.URL.indexOf('name=') + 5; //user input\
+const name = document.URL.substring(pos, document.URL.length)// just paring GET parameteres\
+const container = document.getElementById('container');\
+container.innerHTML = decodeURI(name); // no proper sanitization
+</code></pre></div></div>
+
+<h3 id="indexhtml">index.html</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//can't use inline script tag because it has to be src "self"\
+&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'"&gt;\
+&lt;div id="container"&gt;&lt;/div&gt;\
+&lt;script src="easy-eval.js"&gt;&lt;/script&gt;\
+&lt;script src="easy-xss.js"&gt;&lt;/script&gt;
+</code></pre></div></div>
+
+<h3 id="the-vulnerability">The Vulnerability</h3>
+
+<p>User input is passed in <code class="language-plaintext highlighter-rouge">name</code> parameter straight to the <code class="language-plaintext highlighter-rouge">innerHTML</code> so it would be rendered by browser for example inserting <code class="language-plaintext highlighter-rouge">&lt;h1&gt;asdf&lt;/h1&gt;</code> makes <code class="language-plaintext highlighter-rouge">asdf</code> bold in browser, so HTML tag is parsed correctly.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*KliBbWbiWngU0-lB" alt="" /></p>
+
+<h3 id="exploitation">Exploitation</h3>
+
+<p>Here, The application’s CSP — Content Security Policy is not enough to stop executing arbitrary JavaScript code.</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Q0hv430ejEtQxk0Ziidw7g.png" alt="" /></p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">iframe</code> with <code class="language-plaintext highlighter-rouge">srcdoc</code> attribute allows to fullfill <code class="language-plaintext highlighter-rouge">defaul-src: self</code> condition of CSP. This is because iframe with <code class="language-plaintext highlighter-rouge">srcdoc</code> is assumed <code class="language-plaintext highlighter-rouge">src= self</code>. This with addition to no proper sanitization allows to inject JavaScript code in the victim browser.</p>
+
+<h3 id="payload">Payload</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://127.0.0.1:8000/?name=&lt;iframe srcdoc="&lt;a id=debug href=pb:alert(document.domain)&gt;&lt;script src=easy-eval.js&gt;&lt;/script&gt;"&gt;
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">srcdoc</code> attribute inject a tag with <code class="language-plaintext highlighter-rouge">id=debug</code> which allows to pass if statement in <code class="language-plaintext highlighter-rouge">easy-eval.js</code> then href attribute is set to <code class="language-plaintext highlighter-rouge">pb:alert(document.domain)</code> the first part <code class="language-plaintext highlighter-rouge">pb</code> should be a non-existing protocol. Any protocol that contains <code class="language-plaintext highlighter-rouge">//</code> would not work because in javascript <code class="language-plaintext highlighter-rouge">//</code> is comment. So <code class="language-plaintext highlighter-rouge">http://</code> or <code class="language-plaintext highlighter-rouge">ftp://</code> would result in commenting the payload and never executing it properly.</p>
+
+<p>After that <code class="language-plaintext highlighter-rouge">easy-eval.js</code> is called again to re-initialize the script and execute code in it.</p>
+
+<p>XSS</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*NPkH16P9g6o7C7rvYpXpQQ.png" alt="" /></p>
+
+<p><a href="https://twitter.com/0xSovietBeast">Paweł Wąsik</a> and I worked together to understand and identify the JS code and the vulnerability respectively. This challenge seems to be quite interesting and we were able to gain new knowledge from it.</p>
+
+<p>Thanks <a href="https://twitter.com/h43z">Richard</a> for providing an excellent explanation that greatly contributed to our understanding of the subject.</p>
+
+<p>Refer to this thread to gain a better understanding of the issue.</p>
+
+<blockquote>
+  <p><a href="https://twitter.com/h43z/status/1626237041787940867?s=20">https://twitter.com/h43z/status/1626237041787940867?s=20</a></p>
+</blockquote>
+
+<p>Connect with us at -</p>
+
+<p>Twitter — <a href="https://twitter.com/_0xPb_">Prashanth</a>, <a href="https://twitter.com/0xSovietBeast">Pawel</a></p>
+:ET

@@ -1,0 +1,83 @@
+I"�<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*OhB8Zp9uhjXWWEaG" alt="image1" /></p>
+
+<p>The Bugcrowd has thrown down the gauntlet to all hackers out there.</p>
+
+<p><strong>HINT-1</strong>: “I am eLFI.”</p>
+
+<ul>
+  <li>First, I visited this link: <a href="https://bugcrowd-advent-challenge.herokuapp.com/login.php">Bugcrowd Advent Challenge</a>.</li>
+  <li>I attempted to log in with <code class="language-plaintext highlighter-rouge">user1</code> and <code class="language-plaintext highlighter-rouge">Randompassword123</code> as credentials, which resulted in an internal server error, as shown below:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*X7RI3Gd3nMVPhHGeERkWSQ.png" alt="image" /></p>
+
+<ul>
+  <li>I tinkered with the <code class="language-plaintext highlighter-rouge">login.php</code> page, but no luck.</li>
+  <li>I delved into the source code of <code class="language-plaintext highlighter-rouge">login.php</code> and found a few interesting lines that caught my attention, as highlighted below:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VaKBQncUk8AVSV2cPYDwRg.png" alt="image" /></p>
+
+<ul>
+  <li>I remembered the hint, and these lines of code seemed related.</li>
+  <li>This led me to discover a vulnerable endpoint: `/style.php?css_file=custom.css.</li>
+  <li>It appeared to filter out <code class="language-plaintext highlighter-rouge">/etc/passwd</code>, so I attempted URL and BASE64 encoding, but no luck.</li>
+  <li>After some more exploration, I noticed another file: `index.php.</li>
+  <li>When I tried to open it, it redirected me to <code class="language-plaintext highlighter-rouge">login.php. However, in the network tab, I saw </code>index.php` with a status code of 302.</li>
+  <li>I felt suspicious about <code class="language-plaintext highlighter-rouge">index.php</code> and decided to investigate further:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*auF6KSYzFoF5xnc5FoBJfw.png" alt="image" /></p>
+
+<ul>
+  <li>I used <code class="language-plaintext highlighter-rouge">php://filter/convert.base64-encode/resource=&lt;filename&gt;</code> to bypass restrictions and view the source code of `index.php.</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*G3THjATyx7BnY0cNODccTQ.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">index.php</code> revealed an encoded string, which I decoded using CyberChef:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*78aQVW839y5s6yl7OscdDA.png" alt="image" /></p>
+
+<ul>
+  <li>After decoding, I found another PHP file: <code class="language-plaintext highlighter-rouge">dashboard.php</code>. I replaced <code class="language-plaintext highlighter-rouge">index.php</code> with `dashboard.php:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*92uErSvzxkxdQzrBB1FaLA.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">dashboard.php</code> presented another encoded string, which I decoded again.</li>
+  <li>After decoding, I found yet another file: `sober.php.</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/format:webp/1*Vze78YM-FcbfaSUpNPWq-A.png" alt="image" /></p>
+
+<ul>
+  <li>I replaced <code class="language-plaintext highlighter-rouge">dashboard.php</code> with <code class="language-plaintext highlighter-rouge">sober.php</code> and discovered another encoded string in the comments, although smaller than the earlier ones:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FtxcGiChOcTDTofb1Dahhg.png" alt="image" /></p>
+
+<ul>
+  <li>After decoding, I obtained the following code: <strong>FLAG{d1g_d33p_and_find_7he_power_within}</strong>:</li>
+</ul>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*kGtqNRgnZS1CgA-iFOp67g.png" alt="image" /></p>
+
+<p>I don’t know why, but I was drawn to this challenge and even took some time off work to solve it. Thanks to <a href="https://twitter.com/Bugcrowd">Bugcrowd</a> for the fun challenge!</p>
+
+<p>The challenge might seem simple after reading this walkthrough, but believe me, it took a lot of brainpower and time to execute.</p>
+
+<p>I’d like to extend my gratitude to my friend, Paweł Wąsik, for his constant support.</p>
+
+<p><strong>References:</strong></p>
+
+<ul>
+  <li><a href="https://infinitelogins.com/2020/04/25/lfi-php-wrappers-to-obtain-source-code/">Using PHP Wrappers within LFI to Obtain PHP Script Source Code</a></li>
+  <li><a href="https://infinitelogins.com/2020/04/25/lfi-php-wrappers-to-obtain-source-code/">You find a Local File Inclusion (LFI) running PHP, you’re able to leverage a PHP wrapper to convert the file to Base64…infinitelogins.com</a></li>
+</ul>
+
+<p><strong>Connect with me at:</strong> <a href="https://www.linkedin.com/in/prasanth-bodepu-%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%B6%E0%B0%BE%E0%B0%82%E0%B0%A4%E0%B1%8D-411ba31a3/">LinkedIn</a>, <a href="https://twitter.com/_0xPb">Twitter</a></p>
+:ET

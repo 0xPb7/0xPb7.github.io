@@ -1,0 +1,72 @@
+I"&<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>challenge URL: https://spooky.bugcrowd.zw.ink/klown.cfm
+</code></pre></div></div>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>In this CTF challenge, you were presented with a mysterious web page at the given URL. The initial page seemed to have an inaccessible submit button, but with a little investigation, you were able to uncover a secret password. By following a series of steps, you successfully bypassed the security mechanism and retrieved the <code class="language-plaintext highlighter-rouge">CODE</code>. Let’s walk through the solution:</p>
+
+<h2 id="solution">Solution:</h2>
+
+<ol>
+  <li><strong>Initial Exploration:</strong>
+    <ul>
+      <li>Upon visiting the URL <a href="https://spooky.bugcrowd.zw.ink/klown.cfm">https://spooky.bugcrowd.zw.ink/klown.cfm</a>, I encountered a peculiar webpage.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101223651.png" alt="#1" /></p>
+
+<ol>
+  <li><strong>Hidden Button Element:</strong>
+    <ul>
+      <li>I noticed a button element with the following attributes:</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input name="smile" type="submit" value="submit" disabled="true" style="color:#DF6322; font-weight:bold; cursor: not-allowed" title="Access Denied" id="smile"&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>The button was initially disabled and appeared inaccessible.</li>
+</ul>
+
+<ol>
+  <li><strong>Button Activation:</strong>
+    <ul>
+      <li>I realized that the button could be activated by removing the disabled=”true” attribute.</li>
+    </ul>
+  </li>
+  <li><strong>Form Submission:</strong>
+    <ul>
+      <li>After removing the disabled=”true” attribute, I submitted the form with the default input “Kreepy Klown denies you access!”.</li>
+    </ul>
+  </li>
+  <li><strong>Alert Popup:</strong>
+    <ul>
+      <li>My action triggered a pop-up message that revealed the password:
+  <code class="language-plaintext highlighter-rouge">Secret Password: KR33PIE-KL0WN</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101223939.png" alt="#2" /></p>
+
+<ol>
+  <li><strong>Input Password:</strong>
+    <ul>
+      <li>You then input the secret password, <code class="language-plaintext highlighter-rouge">KR33PIE-KL0WN</code>, into the appropriate field, following the instructions provided in the pop-up.</li>
+    </ul>
+
+    <p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Pasted%20image%2020231101224233.png" alt="#3" /></p>
+  </li>
+  <li><strong>Final Flag:</strong>
+    <ul>
+      <li>After submitting the password, you received the final response:</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/0xPb1/test1/main/_notes/Bugcrowd/Klown.cfm/Pasted%20image%2020231101224121.png" alt="#4" /></p>
+:ET
