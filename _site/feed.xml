@@ -1,4 +1,279 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2023-12-03T11:21:18+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Klise Theme</title><subtitle>He&apos;s writing in Bahasa about web technology and experience as a journal  for documentation things that he learned, meet him &lt;a href=&quot;https://github.com/piharpi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;@github&lt;/a&gt;.</subtitle><author><name>Prasanth Bodepu</name><email>prasanth.bodepu@gmail.com</email></author><entry><title type="html">klown-cfm 🎪</title><link href="http://localhost:4000/klown-cfm/" rel="alternate" type="text/html" title="klown-cfm 🎪" /><published>2023-10-30T05:57:49+07:00</published><updated>2023-10-30T05:57:49+07:00</updated><id>http://localhost:4000/klown-cfm</id><content type="html" xml:base="http://localhost:4000/klown-cfm/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>challenge URL: https://spooky.bugcrowd.zw.ink/klown.cfm
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2023-12-03T13:04:36+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Klise Theme</title><subtitle>He&apos;s writing in Bahasa about web technology and experience as a journal  for documentation things that he learned, meet him &lt;a href=&quot;https://github.com/piharpi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;@github&lt;/a&gt;.</subtitle><author><name>Prasanth Bodepu</name><email>prasanth.bodepu@gmail.com</email></author><entry><title type="html">CSP-101 Part-2</title><link href="http://localhost:4000/CSP-101-Part-2/" rel="alternate" type="text/html" title="CSP-101 Part-2" /><published>2023-12-03T01:00:00+07:00</published><updated>2023-12-03T01:00:00+07:00</updated><id>http://localhost:4000/CSP-101-Part-2</id><content type="html" xml:base="http://localhost:4000/CSP-101-Part-2/"><![CDATA[<h2 id="deploying-csp">Deploying CSP</h2>
+
+<h3 id="what-two-feature-makes-deploying-csp-much-easier">What two feature makes deploying CSP much easier?</h3>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">report-uri</code> directive, and <code class="language-plaintext highlighter-rouge">report-only</code> mode</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>default-src 'none';
+script-src 'self' 'report-sample' https://google-analytics.com
+style-src 'self' https://cdn.bootstrap.com
+report-uri https://0xPb.demo.io/;
+</code></pre></div></div>
+
+<p>It’s gonna tell the browser that any time a violation occurs (so, something is blocked) it’s going to send a <code class="language-plaintext highlighter-rouge">json</code> payload to the endpoint (<code class="language-plaintext highlighter-rouge">https://0xPb.demo.io/;</code>).</p>
+
+<h3 id="what-do-the-violation-reports-look-like">What do the violation reports look like?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+
+"csp-report": {
+	"document-uri": "https://cOnrad. io/",
+	"referrer": "";
+	"violated-directive"; "style-src-elem"
+	"effective-directive": "style-src-elem",
+	"original-policy": "default-src 'self'; script-src 'report-sample' 'self' ....";"
+	"disposition": "enforce",
+	"blocked-uri": "inline",
+	"Line-number": 8,
+	"source-file": "https://cOnrad.io/"
+	"status-code": 200,
+	"script-sample": " something { width: 100%}"
+	}
+}
+</code></pre></div></div>
+
+<h3 id="how-to-enable-report-only-mode-and-build-a-content-security-policy">How to enable report-only mode and build a Content-Security-Policy?</h3>
+
+<p>Deploy CSP in Report-Only mode -&gt; Collect reports using <code class="language-plaintext highlighter-rouge">report-uri</code> -&gt; Update CSP based on reports</p>]]></content><author><name>Prasanth Bodepu</name><email>prasanth.bodepu@gmail.com</email></author><category term="csp" /><category term="xss" /><category term="part2" /><summary type="html"><![CDATA[Deploying CSP]]></summary></entry><entry><title type="html">CSP-101 Part-3</title><link href="http://localhost:4000/CSP-101-Part-3/" rel="alternate" type="text/html" title="CSP-101 Part-3" /><published>2023-12-03T01:00:00+07:00</published><updated>2023-12-03T01:00:00+07:00</updated><id>http://localhost:4000/CSP-101-Part-3</id><content type="html" xml:base="http://localhost:4000/CSP-101-Part-3/"><![CDATA[<h3 id="other-csp-protections">Other CSP Protections</h3>
+
+<p><img src="/_posts/CSP-101/csp03.png" alt="csp03" /></p>
+
+<h3 id="faqs--misconfigurations">FAQs &amp; Misconfigurations</h3>
+
+<h3 id="stick-to-one-csp-header">Stick to One CSP Header</h3>
+<ul>
+  <li>It is recommended to use a singular CSP header to avoid conflicts and maintain consistency. Multiple headers can lead to a highly restrictive policy.</li>
+</ul>
+
+<h3 id="send-csp-header-in-the-http-response">Send CSP Header in the HTTP Response</h3>
+<ul>
+  <li>Embed the CSP header in the HTTP response delivering the HTML content to effectively enforce the security policy.</li>
+</ul>
+
+<h3 id="avoid-script-src-unsafe-inline">Avoid <code class="language-plaintext highlighter-rouge">script-src 'unsafe-inline'</code></h3>
+<ul>
+  <li>Refrain from using <code class="language-plaintext highlighter-rouge">script-src 'unsafe-inline'</code> as it undermines most CSP protections, allowing overly permissive sources like <code class="language-plaintext highlighter-rouge">https://</code>, <code class="language-plaintext highlighter-rouge">*</code>, and <code class="language-plaintext highlighter-rouge">data</code>.</li>
+</ul>
+
+<h3 id="include-default-src-object-src-base-uri-with-none-or-self">Include (<code class="language-plaintext highlighter-rouge">default-src</code>, <code class="language-plaintext highlighter-rouge">object-src</code>, <code class="language-plaintext highlighter-rouge">base-uri</code>) with <code class="language-plaintext highlighter-rouge">none</code> or <code class="language-plaintext highlighter-rouge">self</code></h3>
+<ul>
+  <li>Specify <code class="language-plaintext highlighter-rouge">default-src</code>, <code class="language-plaintext highlighter-rouge">object-src</code>, and <code class="language-plaintext highlighter-rouge">base-uri</code> in the CSP header with values set to either <code class="language-plaintext highlighter-rouge">none</code> or <code class="language-plaintext highlighter-rouge">self</code>. Preferably, use <code class="language-plaintext highlighter-rouge">none</code> and employ full paths to prevent loading potentially hazardous content.</li>
+</ul>
+
+<h3 id="utilize-full-paths-to-prevent-cdn-exploitation">Utilize Full Paths to Prevent CDN Exploitation</h3>
+<ul>
+  <li>When specifying content sources, use full paths to thwart the loading of malicious content. Exercise caution with CDNs that allow free hosting of GitHub projects, as attackers can exploit this to upload and include malicious JavaScript, bypassing the CSP.</li>
+</ul>
+
+<h3 id="implement-report-sample-on-script-srcstyle-src">Implement <code class="language-plaintext highlighter-rouge">report-sample</code> on <code class="language-plaintext highlighter-rouge">script-src/style-src</code></h3>
+<ul>
+  <li>Ensure the usage of <code class="language-plaintext highlighter-rouge">report-sample</code> on the <code class="language-plaintext highlighter-rouge">script-src</code> and <code class="language-plaintext highlighter-rouge">style-src</code> directives in the CSP header. This facilitates accurate reporting of violations, enhancing the effectiveness of the security policy.</li>
+</ul>
+
+<h2 id="other-ways-to-deploy-csp">Other ways to deploy CSP</h2>
+
+<ul>
+  <li>CSPv3 includes <code class="language-plaintext highlighter-rouge">'unsafe-dynamic'</code>, which is a propagating trust model. When used with <code class="language-plaintext highlighter-rouge">'nonce-abc123'</code> allows nonce’d scripts to load any resource.
+<code class="language-plaintext highlighter-rouge">https://csp.withgoogle.com/docs/index.html</code></li>
+</ul>
+
+<h2 id="tools">Tools:</h2>
+
+<h3 id="automatic-policy-generators">Automatic Policy Generators</h3>
+
+<ul>
+  <li>https://csper.io/generator</li>
+  <li>Laboratory (Content Security Policy / CSP Toolkit)</li>
+</ul>
+
+<h3 id="report-uri-endpoints">Report-URI Endpoints</h3>
+
+<ul>
+  <li>https://csper.io
+    <ul>
+      <li>Groups similar reports</li>
+      <li>Classification</li>
+      <li>Real-time monitoring</li>
+      <li>Alerting on Suspicious reports / report spikes</li>
+    </ul>
+  </li>
+  <li>Aggregators (Splunk, ELK, etc)</li>
+</ul>]]></content><author><name>Prasanth Bodepu</name><email>prasanth.bodepu@gmail.com</email></author><category term="csp" /><category term="xss" /><category term="part3" /><summary type="html"><![CDATA[Other CSP Protections]]></summary></entry><entry><title type="html">CSP-101 Part-1</title><link href="http://localhost:4000/CSP-101-Part-1-copy/" rel="alternate" type="text/html" title="CSP-101 Part-1" /><published>2023-12-02T01:00:00+07:00</published><updated>2023-12-02T01:00:00+07:00</updated><id>http://localhost:4000/CSP-101-Part-1%20copy</id><content type="html" xml:base="http://localhost:4000/CSP-101-Part-1-copy/"><![CDATA[<h3 id="what-is-xss">What is XSS?</h3>
+
+<p>A malicious Injection of JavaScript into a webpage.</p>
+
+<h3 id="what-can-you-do-with-an-xss">What can you do with an XSS?</h3>
+
+<h4 id="the-attacker-can-do-anything-on-that-origin-that-the-user-can-do">The attacker can do anything on that origin that the user can do</h4>
+
+<ul>
+  <li>Read Private Messages</li>
+  <li>Tweet Pro</li>
+  <li>Credit Card Skimming</li>
+  <li>Fake logout to steal credentials</li>
+</ul>
+
+<h4 id="for-financial-apps-medical-infra---its-much-more-serious">For Financial apps, Medical, Infra - it’s much more serious</h4>
+<ul>
+  <li>steal funds</li>
+  <li>Leak Medical Records</li>
+  <li>Tear Down Infra</li>
+</ul>
+
+<h3 id="what-is-csp">What is CSP?</h3>
+
+<p>A tool to help prevent XSS exploitation.</p>
+
+<h3 id="how-does-it-prevent-xss-exploitation">How does it prevent XSS exploitation?</h3>
+
+<p>It tells the browser which resources are allowed.</p>
+
+<h3 id="what-does-csp-look-like">What does CSP look like?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>default-src 'self';
+connect-src 'self'
+font-src 'self' data: 
+frame-src 'self' 
+img-src 'self' data: https;
+object-src 'none';
+script-src 'self'
+style-src 'self' 'unsafe-inline';
+base-uri 'self';
+</code></pre></div></div>
+
+<h3 id="how-is-csp-delivered">How is CSP delivered?</h3>
+
+<p>It’s delivered through the HTTP headers.</p>
+
+<p>HTTP Request</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /index.html HTTP/1.1
+Host: app.com
+User-Agent: Mozilla/5.0
+Accept-Language: en-US
+Accept-Encoding: gzip, delfate
+</code></pre></div></div>
+
+<p>HTTP Response</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 200 OK
+Content-Type: Text/html
+Content-LengthL 4567
+Set-Cookie: user_session=abc123
+Content-Security-Policy: default-src 'none', script-src 'self';
+
+&lt;html&gt; &lt;title&gt;app.com&lt;/title&gt;&lt;/html&gt;
+</code></pre></div></div>
+
+<h3 id="nodejs--express">NodeJS / Express</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app.use(function(req, res, next) {}
+	res.setHeader("Content-security-policy-report-only", "default-src 'self'; script-src 'self' 'report-sample'; next();
+});
+</code></pre></div></div>
+
+<h3 id="what-are-the-different-csp-directives">What are the different CSP Directives?</h3>
+
+<p><strong><img src="https://lh7-us.googleusercontent.com/KoN3wPnNHTS3nSR2MI7jRMMFIUwuo41ki2umzwLQapezyIlAilWok1VuQdyf3z0FMth63NEb4IgJLKctO-bPpiBgavegchJQPGnfZxBMjNbhStqf28hGix238qwHb0ie9NK7rXvn2RmQ0s7kgY3gnn4vVw=s2048" alt="" /></strong></p>
+
+<p><strong><img src="https://lh7-us.googleusercontent.com/luehXo4iiFoRv2kqnqs5U3sqpoMkm4ro9GDPSCE8Gh-Mf-wFA_Vs5cshtWabIvy-90dHGcJCLGui6UVVPN4WBwDPjWm3I9558-5N0taRfkzNE9qbVqCwgW6niGjMe-gTkPC3GLhzoBl010W4WJLfye6qIA=s2048" alt="" /></strong></p>
+
+<h3 id="what-are-the-different-csp-sources">What are the different CSP sources?</h3>
+
+<p><strong><img src="https://lh7-us.googleusercontent.com/x-aPtn0ErJ6X_wRS8rb5AqLSJZW5RYvofE7JoIy_SkUSytS8Ff-rJaeSwzLja7Ic_R2YSJX5V6bafp-vgX2THtEvkrH6150jSvB0Yvh-IQyd2c__8e1cfQd0o-X73XZX_RGiV36HmSaXN1jjtSRmVT9ZPQ=s2048" alt="" /></strong></p>
+
+<p><strong><img src="https://lh7-us.googleusercontent.com/DtnbiOahI0Q1iQ0YexXkoNH8nePir4QN4fj48ZIn8wR3Vs-fubDLx9e-LfjV3BPBWVa_WSNwpZsJ6qxjEDQ4OAurBJQVgafxlz32esV44WOjm0FZDgdfJg3aPYAjR9PFFKbXqyZplS9RReWqWj3gaCotyQ=s2048" alt="" /></strong></p>
+
+<h3 id="what-is-in-a-content-security-policy">What is in a Content Security Policy?</h3>
+
+<p>A list of ‘directives’ which contain ‘sources’</p>
+
+<h3 id="how-does-specifying-script-src-prevent-an-inline-xss">How does specifying script-src prevent an inline XSS?</h3>
+
+<p>Inline scripts (and eval) are blocked</p>
+
+<h3 id="what-is-blocked-with-a-standard-content-security-policy">What is blocked with a standard Content-Security-Policy?</h3>
+
+<p><img src="/_posts/CSP-101/def-package.png" alt="def-package" /></p>
+
+<p>Blocked:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://evil.com/malicious.js"&gt;&lt;/script&gt;
+
+&lt;button onclick="xxx"&gt;&lt;/button&gt; //CSP does not allow this
+
+&lt;script&gt; //CSP does not allow this because it is an inline JS
+	// app code
+&lt;/script&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>Because there’s no way to differentiate between malicious Inline JavaScript and allowed Inline JavaScript.</li>
+</ul>
+
+<h3 id="what-to-do-about-inline-scripts">What to do about inline scripts?</h3>
+
+<p>&lt;p style=”align:center”;&gt; Move to a file &lt;/p&gt;</p>
+
+<p><img src="/_posts/CSP-101/csp02.png" alt="csp01" /></p>
+
+<h3 id="what-if-i-cant-move-all-the-javascript">What if I can’t move all the JavaScript?</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>sha256-abc123</th>
+      <th>Hash the JavaScript and include the hash-source</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><script>normalAppCode</script></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Does not work on event_handlers, to include those, include ‘unsafe-hashes’</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>nonce-abc-123</td>
+      <td>Generate a random unique token on each request and add it to the script tags</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script nonce="abc123">normalAppCode</script></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>‘unsafe-inline’</td>
+      <td>Disable CSP’s XSS protection (not recommended)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="what-about-eval">What about eval?</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>‘unsafe-eval’</th>
+      <th>Allows the use of eval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>eval(), Function(‘’), setTimeout(‘’)</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Prasanth Bodepu</name><email>prasanth.bodepu@gmail.com</email></author><category term="csp" /><category term="xss" /><summary type="html"><![CDATA[What is XSS?]]></summary></entry><entry><title type="html">klown-cfm 🎪</title><link href="http://localhost:4000/klown-cfm/" rel="alternate" type="text/html" title="klown-cfm 🎪" /><published>2023-10-30T05:57:49+07:00</published><updated>2023-10-30T05:57:49+07:00</updated><id>http://localhost:4000/klown-cfm</id><content type="html" xml:base="http://localhost:4000/klown-cfm/"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>challenge URL: https://spooky.bugcrowd.zw.ink/klown.cfm
 </code></pre></div></div>
 
 <h3 id="introduction">Introduction</h3>

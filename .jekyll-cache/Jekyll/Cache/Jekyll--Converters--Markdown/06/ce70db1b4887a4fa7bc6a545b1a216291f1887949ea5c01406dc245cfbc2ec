@@ -1,0 +1,41 @@
+I"c<h2 id="deploying-csp">Deploying CSP</h2>
+
+<h3 id="what-two-feature-makes-deploying-csp-much-easier">What two feature makes deploying CSP much easier?</h3>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">report-uri</code> directive, and <code class="language-plaintext highlighter-rouge">report-only</code> mode</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>default-src 'none';
+script-src 'self' 'report-sample' https://google-analytics.com
+style-src 'self' https://cdn.bootstrap.com
+report-uri https://0xPb.demo.io/;
+</code></pre></div></div>
+
+<p>It’s gonna tell the browser that any time a violation occurs (so, something is blocked) it’s going to send a <code class="language-plaintext highlighter-rouge">json</code> payload to the endpoint (<code class="language-plaintext highlighter-rouge">https://0xPb.demo.io/;</code>).</p>
+
+<h3 id="what-do-the-violation-reports-look-like">What do the violation reports look like?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+
+"csp-report": {
+	"document-uri": "https://cOnrad. io/",
+	"referrer": "";
+	"violated-directive"; "style-src-elem"
+	"effective-directive": "style-src-elem",
+	"original-policy": "default-src 'self'; script-src 'report-sample' 'self' ....";"
+	"disposition": "enforce",
+	"blocked-uri": "inline",
+	"Line-number": 8,
+	"source-file": "https://cOnrad.io/"
+	"status-code": 200,
+	"script-sample": " something { width: 100%}"
+	}
+}
+</code></pre></div></div>
+
+<h3 id="how-to-enable-report-only-mode-and-build-a-content-security-policy">How to enable report-only mode and build a Content-Security-Policy?</h3>
+
+<p>Deploy CSP in Report-Only mode -&gt; Collect reports using <code class="language-plaintext highlighter-rouge">report-uri</code> -&gt; Update CSP based on reports</p>
+
+:ET
